@@ -49,3 +49,10 @@ gl6() { git log -6 "$@"; }
 gl7() { git log -7 "$@"; }
 gl8() { git log -8 "$@"; }
 gl9() { git log -9 "$@"; }
+
+grso() { git remote show origin; }
+grsou() { grso | awk '/Fetch/ {print $3}'; }
+
+os() { uname -s; }
+
+gt() { [ "`os`" == "Darwin" ] && open `grsou` || echo -e "\nThis is Mac specific\n"; }
