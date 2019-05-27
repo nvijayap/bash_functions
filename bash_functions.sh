@@ -9,9 +9,9 @@
 # ---------------------------------------------------------------------------
 
 export PS1='\w '
-
 set -o noclobber
 
+os() { uname -s; }
 ty() { type "$@"; }
 
 cp() { /bin/cp -i "$@"; }
@@ -24,6 +24,7 @@ lh() { ls -lt "$@" | head; }
 mo() { more "$@"; }
 tf() { tail -F "$@"; }
 fn() { find . -name "$@"; }
+nu() { who | awk 'END {print NR-1}'; }
 
 rv() { ruby -v; }
 pv() { python -V; }
@@ -52,7 +53,5 @@ gl9() { git log -9 "$@"; }
 
 grso() { git remote show origin; }
 grsou() { grso | awk '/Fetch/ {print $3}'; }
-
-os() { uname -s; }
 
 gt() { [ "`os`" == "Darwin" ] && open `grsou` || echo -e "\nThis is Mac specific\n"; }
